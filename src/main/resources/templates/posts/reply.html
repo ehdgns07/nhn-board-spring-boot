@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NHN Board</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    header {
+        border: 2px solid darkgoldenrod;
+        padding: 1.5rem;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 1.5rem);
+    }
+</style>
+<body>
+<header>
+    <a href="/">NHN Board</a> | 답글 등록
+</header>
+<main>
+    <h1>답글 등록하기</h1>
+    <form action="/posts/reply" th:action method="post">
+        <div>
+            <label for="parent-post-id">윗글 번호</label>
+            <input type="text" id="parent-post-id" name="parent-post-id" class="form-post" th:value="${postNo}"
+                   readonly>
+        </div>
+<!--        <div>-->
+<!--            <label for="post-id">글 번호</label>-->
+<!--            <input type="text" id="post-id" th:name="${postNo}" class="form-post" readonly>-->
+<!--        </div>-->
+        <div>
+            <label for="post-title">글 제목</label>
+            <input type="text" id="post-title" name="title" class="form-post" th:value="${title}">
+        </div>
+        <div>
+            <label for="post-content">글 내용</label>
+            <textarea id="post-content" name="content" class="form-post" th:value="${content}">
+                </textarea>
+        </div>
+        <div>
+            <button type="submit">등록</button>
+            <button onclick="location.href='index.html'">취소</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
+POST posts/reply?postId=2&title="하하"&content="xxxx"
