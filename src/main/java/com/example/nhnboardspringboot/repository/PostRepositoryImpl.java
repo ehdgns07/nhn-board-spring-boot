@@ -41,7 +41,7 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
     }
 
     @Override
-    public List<PostDetailViewDto> getPostById(Long postNo) {
+    public PostDetailViewDto getPostById(Long postNo) {
         QPost post = QPost.post;
         QUser user = QUser.user;
 
@@ -50,9 +50,8 @@ public class PostRepositoryImpl extends QuerydslRepositorySupport implements Pos
             .where(post.postNo.eq(postNo))
             .select(Projections.bean(PostDetailViewDto.class, post.postNo, post.title,
                 user.username, post.content))
-            .fetch();
+            .fetchOne();
 
     }
-
 
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,10 +44,11 @@ public class PostController {
     }
 
     @GetMapping("/{postNo}")
-    public List<PostDetailViewDto> postDetail(@PathVariable Long postNo, Model model) {
+    public String postDetail(@PathVariable Long postNo, Model model) {
         model.addAttribute("post", postService.getPost(postNo));
 
-        return postService.getPost(postNo); }
+        return "posts/post";
+    }
 
     @GetMapping("/new")
     public String newPost() {
@@ -54,9 +56,9 @@ public class PostController {
     }
 
     @PostMapping("/new")
-    public String doNewPost() {
+    public String doNewPost(@RequestBody PostNewRequest postRequest, HttpServletRequest request) {
 
-        // postService.newPost(postRequest, request);
+        postService.newPost(postRequest, request);
 
         return "redirect:/posts";
     }

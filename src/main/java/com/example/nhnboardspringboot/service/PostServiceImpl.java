@@ -7,7 +7,6 @@ import com.example.nhnboardspringboot.domain.user.UserDto;
 import com.example.nhnboardspringboot.entity.post.Post;
 import com.example.nhnboardspringboot.repository.PostRepository;
 import com.example.nhnboardspringboot.repository.UserRepository;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageImpl;
@@ -27,7 +26,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDetailViewDto> getPost(Long postNo) {
+    public PostDetailViewDto getPost(Long postNo) {
         return postRepository.getPostById(postNo);
     }
 
@@ -36,7 +35,7 @@ public class PostServiceImpl implements PostService {
         String username = (String) request.getSession(false).getAttribute("username");
         UserDto user = userRepository.findByUsername(username);
         postRequest.setUserNo(user.getUserNo());
-        // postRepository.save();
+        // postRepository.save(postRequest);
     }
 
     @Override

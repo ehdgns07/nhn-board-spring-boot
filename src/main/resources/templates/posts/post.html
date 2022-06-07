@@ -48,7 +48,7 @@
                 <div>
                     <button th:onclick="|location.href='@{/posts/reply/{postNo} (postNo=${post.postNo})}'|">답글</button>
                     <button th:onclick="|location.href='@{/posts/{postNo}/edit (postNo=${post.postNo})}'|">글 수정</button>
-                    <button th:onclick="|location.href='@{/posts}'|">글 목록으로</button>
+                    <button th:onclick="|location.href='@{/posts/index?page=0&size=5}'|">글 목록으로</button>
                 </div>
             </section>
             <hr>
